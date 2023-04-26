@@ -1,6 +1,6 @@
 import sys
 
-from langchain.chains import ConversationalRetrievalChain
+from langchain.chains import ConversationalRetrievalChain, LLMChain
 from langchain.chat_models.openai import ChatOpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.memory import ConversationBufferMemory
@@ -16,7 +16,7 @@ from src.exception import CustomException
 from src.logger import logging
 
 
-class LLMChain:
+class BotChain:
     def __init__(self):
         self.vector_store_config = VectorStoreConfig()
 
@@ -26,7 +26,7 @@ class LLMChain:
 
         self.chain_config = ChainConfig()
 
-    def get_llm_chain(self):
+    def get_llm_chain(self) -> LLMChain:
         """
         This function initializes and returns a ConversationalRetrievalChain object for OpenAI language
         model using Chroma database as retriever and ConversationBufferMemory as memory.
