@@ -1,0 +1,12 @@
+chromadb==0.3.21
+html2text==2020.1.16
+httptools==0.5.0
+langchain==0.0.149
+openai==0.27.4
+pip-chill==1.0.3
+pytelegrambotapi==4.11.0
+python-dotenv==1.0.0
+scrapy==2.8.0
+tiktoken==0.3.3
+watchfiles==0.19.0
+websockets==11.0.2

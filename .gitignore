@@ -5,7 +5,9 @@ __pycache__/
 
 # C extensions
 *.so
-
+demo.py
+hfcrawl/output
+db/
 # Distribution / packaging
 .Python
 build/
