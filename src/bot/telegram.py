@@ -1,7 +1,6 @@
 import os
 
 from langchain.callbacks import get_openai_callback
-from langchain.chains.llm import LLMChain
 from telebot import TeleBot
 
 from src.api.chain import BotChain
@@ -9,7 +8,9 @@ from src.logger import logging
 
 bot = TeleBot(os.environ["API_KEY"])
 
-llm_chain: LLMChain = BotChain()
+bot_chain = BotChain()
+
+llm_chain = bot_chain.get_llm_chain()
 
 
 @bot.message_handler(commands=["start"])
@@ -84,11 +85,11 @@ def handle_message(message):
     user_message: str = message.text
 
     with get_openai_callback() as cb:
-        bot_response = llm_chain.predict(human_input=user_message)
+        bot_response = llm_chain({"question": user_message, "chat_history": []})
 
         logging.info(f"Cost is {cb}")
 
-        bot.send_message(message.chat.id, bot_response)
+        bot.send_message(message.chat.id, bot_response["answer"])
 
 
 print("Hey, I am up....")
